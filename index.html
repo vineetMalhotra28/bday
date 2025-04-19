@@ -1,22 +1,9 @@
-
-<?php
-// Check if the 'name' parameter is present in the URL
-if (isset($_GET['name'])) {
-    // Get the name from the URL parameter
-    $name = htmlspecialchars($_GET['name']);
-
-  
-} else {
-  header("Location: https://www.mehandrucompany.com/");
-  die();
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Document</title>
   <style>
     body {
@@ -26,12 +13,14 @@ if (isset($_GET['name'])) {
       background-repeat: no-repeat;
       background-attachment: fixed;
     }
-    .logo{
-      position: relative;;
+
+    .logo {
+      position: relative;
       height: 140px;
       width: 250px;
       left: 10%;
     }
+
     .card {
       position: relative;
       width: 300px;
@@ -40,11 +29,8 @@ if (isset($_GET['name'])) {
       margin: 60px auto 0 auto;
       box-shadow: inset 10px 0px 15px 0px rgba(0, 0, 0, 0.1);
       background-image: linear-gradient(to bottom, rgba(255, 255, 255), rgba(255, 255, 255, 0.5)), url("https://images.unsplash.com/photo-1527481138388-31827a7c94d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");
-
       background-position: center;
-      /* Center the image */
       background-repeat: no-repeat;
-      /* Do not repeat the image */
       background-size: cover;
       background-color: #e6f0e6;
     }
@@ -83,9 +69,6 @@ if (isset($_GET['name'])) {
       border: 10px solid #9612eb;
       backface-visibility: hidden;
       background-color: #9612eb;
-      /* background-image: url($cover-image);
-       */
-      background-size: contain;
       transform-style: preserve-3d;
       transform-origin: 0% 50%;
       transform: perspective(800px) rotateY(0deg);
@@ -133,30 +116,34 @@ if (isset($_GET['name'])) {
 </head>
 
 <body>
-
-
-    <div  >
-      <!-- <img  class="logo" src="./MIC_LOGO_CIRCLECrop.png"> -->
-      <img  class="logo" src="https://dl3.pushbulletusercontent.com/OOryX256hcGUJzCFqoiBAdIlHMoYPbOW/MIC_LOGOLight.jpg">
-      <div class="card">
-        <div class="back"></div>
-        <div class="front">
-          <div class="imgset">
-            <img width="100%"
-              src="https://1.bp.blogspot.com/-Mgj9-rbs65E/XfMoPSD5gtI/AAAAAAAAURk/NBokE2gSS2cTSJ2em5lZ5hJDuTtRN7UVwCLcBGAsYHQ/s1600/2713997.png">
-          </div>
-        </div>
-        <div class="text-container">
-          <p id="head">Happy Birthday <?php echo( $name); ?></p>
-          <p>I hope your special day will bring you lots of happiness, love, and fun. You deserve them a lot. Enjoy!</p>
-          <p>Hope your day goes great!</p>
+  <div>
+    <img class="logo" src="https://dl3.pushbulletusercontent.com/OOryX256hcGUJzCFqoiBAdIlHMoYPbOW/MIC_LOGOLight.jpg" />
+    <div class="card">
+      <div class="back"></div>
+      <div class="front">
+        <div class="imgset">
+          <img width="100%" src="https://1.bp.blogspot.com/-Mgj9-rbs65E/XfMoPSD5gtI/AAAAAAAAURk/NBokE2gSS2cTSJ2em5lZ5hJDuTtRN7UVwCLcBGAsYHQ/s1600/2713997.png" />
         </div>
       </div>
-      
+      <div class="text-container">
+        <p id="head">Happy Birthday<br> <span id="name-placeholder"></span></p>
+        <p>I hope your special day will bring you lots of happiness, love, and fun. You deserve them a lot. Enjoy!</p>
+        <p>Hope your day goes great!</p>
+      </div>
     </div>
-   
-   
+  </div>
 
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const name = params.get('name');
+
+    if (name) {
+      document.getElementById('name-placeholder').textContent = decodeURIComponent(name);
+    } else {
+      // Redirect if no name is present
+    document.getElementById('name-placeholder').textContent = 'Our family';
+    }
+  </script>
 </body>
 
 </html>
